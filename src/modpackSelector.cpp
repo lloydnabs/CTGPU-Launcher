@@ -22,7 +22,7 @@
 #include "common/retain_vars.h"
 
 #define TEXT_SEL(x, text1, text2)           ((x) ? (text1) : (text2))
-
+#define symlink()
 
 
 void HandleMultiModPacks(u64 titleID/*,bool showMenu*/) {
