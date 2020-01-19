@@ -26,8 +26,8 @@
 class CopyDir{
     public :static void Main()
     {
-        string sourceDirectory = "sd:\ctgpu\CTGP-U";
-        string targetDirectory = "sd:\ctgpu\MyStuff";
+        sourceDirectory = "sd:\ctgpu\CTGP-U";
+        targetDirectory = "sd:\ctgpu\MyStuff";
 
         DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
         DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
