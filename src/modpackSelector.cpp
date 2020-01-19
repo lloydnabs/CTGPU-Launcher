@@ -29,7 +29,6 @@ void HandleMultiModPacks(u64 titleID/*,bool showMenu*/) {
 
     char TitleIDString[FS_MAX_FULLPATH_SIZE];
     snprintf(TitleIDString,FS_MAX_FULLPATH_SIZE,"%016llX",titleID);
-	std::filesystem::copy("sd:/ctgpu" + TitleIDString + "/CTGP-U", "sd:/ctgpu" + TitleIDString + "/MyStuff", std::filesystem::copy_options::recursive);	
     std::map<std::string,std::string> modTitlePath;
 
     std::map<std::string,std::string> mounting_points;
@@ -47,6 +46,7 @@ void HandleMultiModPacks(u64 titleID/*,bool showMenu*/) {
         std::string curMountName = it->second;
         //DEBUG_FUNCTION_LINE("%s %s \n",curMount.c_str(),curMountName.c_str());
         std::string modTitleIDPath = curMount + GAME_MOD_FOLDER + "/" + TitleIDString;
+		std::filesystem::copy(modTitleIDPath + "/CTGP-U", modTitleIDPath + "/MyStuff", std::filesystem::copy_options::recursive);	
         //DEBUG_FUNCTION_LINE("modTitleIDPath %s \n",modTitleIDPath.c_str());
         DirList modTitleDirList(modTitleIDPath.c_str(), NULL, DirList::Dirs);
 
