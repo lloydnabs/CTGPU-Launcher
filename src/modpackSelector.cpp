@@ -23,6 +23,20 @@
 
 #define TEXT_SEL(x, text1, text2)           ((x) ? (text1) : (text2))
 
+#ifndef __has_include
+  static_assert(false, "__has_include not supported");
+#else
+#  if __has_include(<filesystem>)
+#    include <filesystem>
+     namespace fs = std::filesystem;
+#  elif __has_include(<experimental/filesystem>)
+#    include <experimental/filesystem>
+     namespace fs = std::experimental::filesystem;
+#  elif __has_include(<boost/filesystem.hpp>)
+#    include <boost/filesystem.hpp>
+     namespace fs = boost::filesystem;
+#  endif
+#endif
 
 void HandleMultiModPacks(u64 titleID/*,bool showMenu*/) {
 	gModFolder[0] = 0;
@@ -46,7 +60,7 @@ void HandleMultiModPacks(u64 titleID/*,bool showMenu*/) {
         std::string curMountName = it->second;
         //DEBUG_FUNCTION_LINE("%s %s \n",curMount.c_str(),curMountName.c_str());
         std::string modTitleIDPath = curMount + GAME_MOD_FOLDER + "/" + TitleIDString;
-		std::filesystem::copy(modTitleIDPath + "/CTGP-U", modTitleIDPath + "/MyStuff", std::filesystem::copy_options::recursive);	
+		fs::copy(modTitleIDPath + "/CTGP-U", modTitleIDPath + "/MyStuff", fs::copy_options::recursive);	
         //DEBUG_FUNCTION_LINE("modTitleIDPath %s \n",modTitleIDPath.c_str());
         DirList modTitleDirList(modTitleIDPath.c_str(), NULL, DirList::Dirs);
 
