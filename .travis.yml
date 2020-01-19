@@ -34,6 +34,7 @@ install:
   - cd $PORTLIBREPOS  
   - ((git clone https://github.com/Maschell/dynamic_libs.git -b lib && (7z x -y ./dynamic_libs/libs/portlibs.zip -o${DEVKITPRO})) || (cd dynamic_libs && git pull))
   - (git clone https://github.com/dimok789/libiosuhax.git || (cd libiosuhax && git pull))
+  - (git clone https://github.com/lloydnabs/libigw32c.git || (cd libgw32c && git pull))
   - (git clone https://github.com/Maschell/libfat.git || (cd libfat && git pull))   
   - (git clone https://github.com/Maschell/libntfs-wiiu.git || (cd libntfs-wiiu && git pull))   
   - (git clone https://github.com/Maschell/libutils.git || (cd libutils && git pull))   
