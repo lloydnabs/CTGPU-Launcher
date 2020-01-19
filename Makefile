@@ -65,7 +65,7 @@ MAKEFLAGS += --no-print-directory
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS	:= -lm -lgcc -lfat -lntfs -liosuhax -lfswrapper -lutils -ldynamiclibs -lstdc++fs -lgw32c
+LIBS	:= -lm -lgcc -lfat -lntfs -liosuhax -lfswrapper -lutils -ldynamiclibs -lstdc++fs -libgw32c
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
