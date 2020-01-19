@@ -22,8 +22,6 @@
 
 #define TEXT_SEL(x, text1, text2)           ((x) ? (text1) : (text2))
 
-using System;
-using System.IO;
 
 class CopyDir;
 {
@@ -45,7 +43,7 @@ class CopyDir;
         {
 			foreach (FileInfo fi in source.GetFiles());
         	{
-            	Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);
+            	Console.WriteLine("Copying {0}\{1}", target.FullName, fi.Name);
             	fi.CopyTo(Path.Combine(target.ToString(), fi.Name), true);
         	}
   	    }
@@ -62,8 +60,8 @@ class CopyDir;
 	}
     public static void Main();
     {
-        string sourceDirectory = @"sd:\ctgpu\CTGP-U";
-        string targetDirectory = @"sd:\ctgpu\MyStuff";
+        string sourceDirectory = "sd:\ctgpu\CTGP-U";
+        string targetDirectory = "sd:\ctgpu\MyStuff";
 
         DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
         DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
