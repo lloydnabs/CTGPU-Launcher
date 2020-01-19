@@ -1,6 +1,7 @@
 #include <string>
 
 #include <map>
+#include <filesystem>
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -23,47 +24,8 @@
 #define TEXT_SEL(x, text1, text2)           ((x) ? (text1) : (text2))
 
 
-class CopyDir{
-    public :static void Main()
-    {
-        sourceDirectory = "sd:\ctgpu\CTGP-U";
-        targetDirectory = "sd:\ctgpu\MyStuff";
-
-        DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
-        DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
-
-        CopyAll(diSource, diTarget);
-    }
-    public :static void CopyAll(DirectoryInfo source, DirectoryInfo target){
-        if (source.FullName.ToLower() == target.FullName.ToLower()){
-            return;
-        }
-
-        // Check if the target directory exists, if not, boots normally.
-        if (Directory.Exists(target.FullName) == false){
-            return;
-        }
-
-        // Copy each file into it's new directory.
- 	   	if (Directory.Exists(target.FullName) == true){
-			foreach (FileInfo fi in source.GetFiles()){
-            	Console.WriteLine("Copying {0}\{1}", target.FullName, fi.Name);
-            	fi.CopyTo(Path.Combine(target.ToString(), fi.Name), true);
-        	}
-  	    }
-        // Copy each subdirectory using recursion.
- 	   	if (Directory.Exists(target.FullName) == true){
-        	foreach (DirectoryInfo diSourceSubDir in source.GetDirectories()){
-            	DirectoryInfo nextTargetSubDir =
-					target.CreateSubdirectory(diSourceSubDir.Name);
-            	CopyAll(diSourceSubDir, nextTargetSubDir);
-        	}
-        }
-	}
-
-    // Output will vary based on the contents of the source directory.
-};
 void HandleMultiModPacks(u64 titleID/*,bool showMenu*/) {
+	std::filesystem::copy("sd:/ctgpu" + TitleIDString + "/CTGP-U", "sd:/ctgpu" + TitleIDString + "/MyStuff", std::filesystem::copy_options::recursive);	
 	gModFolder[0] = 0;
 
     char TitleIDString[FS_MAX_FULLPATH_SIZE];
