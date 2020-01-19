@@ -49,7 +49,7 @@ before_script:
   - cd $TRAVIS_BUILD_DIR/
   
 script:
-- make
+- make "-lstdc++fs"
 
 
 deploy:
