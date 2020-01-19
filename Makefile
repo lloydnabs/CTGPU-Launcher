@@ -179,8 +179,8 @@ $(OUTPUT).elf:  $(OFILES)
 # This rule links in binary data with the .jpg extension
 #---------------------------------------------------------------------------------
 %.elf: link.ld $(OFILES)
-	@echo "linking ... $(TARGET).elf" -lstdc++fs
-	$(Q)$(LD) -n -T $^ $(LDFLAGS) -o ../$(BUILD_DBG).elf  $(LIBPATHS) $(LIBS)
+	@echo "linking ... $(TARGET).elf"
+	$(Q)$(LD) -n -lstdc++fs -T $^ $(LDFLAGS) -o ../$(BUILD_DBG).elf  $(LIBPATHS) $(LIBS)
 	$(Q)$(OBJCOPY) -S -R .comment -R .gnu.attributes ../$(BUILD_DBG).elf $@
 
 ../data/loader.bin:
