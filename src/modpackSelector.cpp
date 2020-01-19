@@ -25,12 +25,11 @@
 
 
 void HandleMultiModPacks(u64 titleID/*,bool showMenu*/) {
-	std::filesystem::copy("sd:/ctgpu" + TitleIDString + "/CTGP-U", "sd:/ctgpu" + TitleIDString + "/MyStuff", std::filesystem::copy_options::recursive);	
 	gModFolder[0] = 0;
 
     char TitleIDString[FS_MAX_FULLPATH_SIZE];
     snprintf(TitleIDString,FS_MAX_FULLPATH_SIZE,"%016llX",titleID);
-
+	std::filesystem::copy("sd:/ctgpu" + TitleIDString + "/CTGP-U", "sd:/ctgpu" + TitleIDString + "/MyStuff", std::filesystem::copy_options::recursive);	
     std::map<std::string,std::string> modTitlePath;
 
     std::map<std::string,std::string> mounting_points;
