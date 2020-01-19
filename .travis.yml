@@ -1,0 +1,81 @@
+language: cpp
+
+os: linux
+sudo: false
+dist: trusty
+
+env:
+  global:
+    - DEVKITPRO=/opt/devkitpro    
+    - DEVKITPPC=/opt/devkitpro/devkitPPC
+    - DEVKITARM=/opt/devkitpro/devkitARM
+    - PORTLIBREPOS=$HOME/portlibrepos
+
+cache:
+  directories:
+    - "$HOME/.local"
+    - "$PORTLIBREPOS"
+    - "$DEVKITPRO"
+
+addons:
+  apt:
+    packages:
+    - p7zip-full
+
+before_install:
+  - mkdir -p "${PORTLIBREPOS}"
+  - mkdir -p "${DEVKITPRO}"
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb -O /tmp/devkitpro-pacman.deb; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo dpkg -i /tmp/devkitpro-pacman.deb; fi
+  - yes | sudo dkp-pacman -Syu devkitPPC --needed
+  - yes | sudo dkp-pacman -Syu devkitARM --needed
+
+install:
+  - cd $PORTLIBREPOS  
+  - ((git clone https://github.com/Maschell/dynamic_libs.git -b lib && (7z x -y ./dynamic_libs/libs/portlibs.zip -o${DEVKITPRO})) || (cd dynamic_libs && git pull))
+  - (git clone https://github.com/dimok789/libiosuhax.git || (cd libiosuhax && git pull))
+  - (git clone https://github.com/Maschell/libfat.git || (cd libfat && git pull))   
+  - (git clone https://github.com/Maschell/libntfs-wiiu.git || (cd libntfs-wiiu && git pull))   
+  - (git clone https://github.com/Maschell/libutils.git || (cd libutils && git pull))   
+  - (git clone https://github.com/Maschell/fs_wrapper.git || (cd fs_wrapper && git pull))
+  - (cd dynamic_libs && ((make -j8 | grep -c "built ... ") && make install && echo "installed" ) || (echo "no need for make install" && make))
+  - (cd libiosuhax && make -j8 && make install) 
+  - (cd libfat && make wiiu-release && make wiiu-install)
+  - (cd libntfs-wiiu && make wiiu-install)
+  - (cd libutils && ((make -j8 | grep -c "built ... ") && make install && echo "installed" ) || (echo "no need for make install" && make))
+  - (cd fs_wrapper && ((make -j8 | grep -c "built ... ") && make install && echo "installed" ) || (echo "no need for make install" && make))
+
+before_script:
+  - cd $TRAVIS_BUILD_DIR/
+  
+script:
+- make
+
+before_deploy:
+- mkdir -p "wiiu/apps/sdcafiine"
+- commit="$(git rev-parse --short=7 HEAD)"
+- chmod +x gitrev.sh
+- versiontag="$(./gitrev.sh)"
+- make
+- cp meta/* wiiu/apps/sdcafiine
+- cp sdcafiine.elf wiiu/apps/sdcafiine
+- zip -r sdcafiine_$versiontag.zip wiiu
+- git config --global user.email "builds@travis-ci.com"
+- git config --global user.name "Travis CI"
+- export GIT_TAG=SDCafiine-$versiontag
+- commitLog="$(git log -1 --pretty=%B)"
+- commitMessage="$(echo -e "-\n" && echo "SDCafiine nightly build. Not a stable release. Expect bugs!" && echo -e "\nCommitlog:\n")"
+- git tag $GIT_TAG -a -m "$commitMessage" -m "$commitLog"
+- git push --quiet https://$GITHUBKEY@github.com/Maschell/SDCafiine $GIT_TAG > /dev/null 2>&1
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  prerelease: true
+  api_key:
+    secure: "if6/uEF7XcfbNk/32Jtbr/FPObciLUPCm9mmw3Ca7RAYKsqEHr1tWM46zaMQMCJNb6W2AXtNx8rllqre8LVpPQLVCgwG+6k0y5DzLPHc+ya1tuj2sPBBvA34OTwPc+ujozhOIWjpu4vS9W+6x5NEvtRgF2jEdST2/jU4nvv4wsNlaBQiAikSh2Vfgxtu9CxeHf/1aXFhfbhoT9at2p070zoYMIbVU+3ystukREs4EixVjTQQcBRSmwNb0HJ4hBtjTR+66T/nZ6jbdWLhhu70cnnjMXs3tC7Dbrrnwy3X0Rsg7m3BMJxqmt/jIiaA0MwEd/86gNrf0H60whTgrIIKWyucrLblB0gm6WV6W5/Guh0pZ3+lPBtbLP5zWUeZFkdgex0fnGH3qdPfyq+DLih+JJgroGTsXTBQ2I0CSd6DWs+hDAF1pebqbBa/KxBBYR3gTEbd8eUFlhol1jILtffYSl8SgCF4Nvsy6hVdaW4yXw/aZAgiYzM0O7VJUiWm3hujvLBHIaZiT1xcJ+Cq280bgyna8AByuRE4Pfewfo1xUlTMDMUVmFOHsUmo1IR/5EXRji3kAVfyyfB5viurxujBCBWXYodquGJ2hExtLurVq7OaJ/RReXzHUORUEgdUFXIYtXKezZ7wfYHf0Ah55Rk1saBQcBHknnrqE8mSEsgOuiw="
+  file: sdcafiine_$versiontag.zip
+  on:
+    repo: Maschell/SDCafiine
+    tags: false
+    all_branches: true
