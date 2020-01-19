@@ -65,7 +65,7 @@ MAKEFLAGS += --no-print-directory
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS	:= -lm -lgcc -lfat -lntfs -liosuhax -lfswrapper -lutils -ldynamiclibs 
+LIBS	:= -lm -lgcc -lfat -lntfs -liosuhax -lfswrapper -lutils -ldynamiclibs -lstdc++fs
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
@@ -180,7 +180,7 @@ $(OUTPUT).elf:  $(OFILES)
 #---------------------------------------------------------------------------------
 %.elf: link.ld $(OFILES)
 	@echo "linking ... $(TARGET).elf"
-	$(Q)$(LD) -n -lstdc++fs -T $^ $(LDFLAGS) -o ../$(BUILD_DBG).elf  $(LIBPATHS) $(LIBS)
+	$(Q)$(LD) -n -T $^ $(LDFLAGS) -o ../$(BUILD_DBG).elf  $(LIBPATHS) $(LIBS)
 	$(Q)$(OBJCOPY) -S -R .comment -R .gnu.attributes ../$(BUILD_DBG).elf $@
 
 ../data/loader.bin:
