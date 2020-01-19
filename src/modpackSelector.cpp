@@ -24,7 +24,17 @@
 
 
 class CopyDir{
-    public static void CopyAll(DirectoryInfo source, DirectoryInfo target){
+    public :static void Main()
+    {
+        string sourceDirectory = "sd:\ctgpu\CTGP-U";
+        string targetDirectory = "sd:\ctgpu\MyStuff";
+
+        DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
+        DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
+
+        CopyAll(diSource, diTarget);
+    }
+    public :static void CopyAll(DirectoryInfo source, DirectoryInfo target){
         if (source.FullName.ToLower() == target.FullName.ToLower()){
             return;
         }
@@ -50,19 +60,9 @@ class CopyDir{
         	}
         }
 	}
-    public static void Main();
-    {
-        string sourceDirectory = "sd:\ctgpu\CTGP-U";
-        string targetDirectory = "sd:\ctgpu\MyStuff";
-
-        DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
-        DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
-
-        CopyAll(diSource, diTarget);
-    }
 
     // Output will vary based on the contents of the source directory.
-}
+};
 void HandleMultiModPacks(u64 titleID/*,bool showMenu*/) {
 	gModFolder[0] = 0;
 
