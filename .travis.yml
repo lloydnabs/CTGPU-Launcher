@@ -6,7 +6,7 @@ os: linux
       sources:
         - ubuntu-toolchain-r-test
       packages:
-        - g++-9
+        - g++-7
 sudo: true
 dist: trusty
 
@@ -16,7 +16,7 @@ env:
     - DEVKITPPC=/opt/devkitpro/devkitPPC
     - DEVKITARM=/opt/devkitpro/devkitARM
     - PORTLIBREPOS=$HOME/portlibrepos
-	- MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
+	- MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
 cache:
   directories:
