@@ -42,7 +42,6 @@ install:
   - (cd dynamic_libs && ((make -j8 | grep -c "built ... ") && make install && echo "installed" ) || (echo "no need for make install" && make))
   - (cd libiosuhax && make -j8 && make install) 
   - (cd libgw32c/lib && cp libgw32c.a /opt/devkitpro/portlibs/ppc/lib) 
-  - (cd libgw32c/include && cp glibc /opt/devkitpro/portlibs/ppc/include) 
   - (cd libfat && make wiiu-release && make wiiu-install)
   - (cd libntfs-wiiu && make wiiu-install)
   - (cd libutils && ((make -j8 | grep -c "built ... ") && make install && echo "installed" ) || (echo "no need for make install" && make))
