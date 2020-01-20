@@ -2,7 +2,7 @@ language: c
 
 os: ubuntu
 sudo: true
-dist: clang
+dist: trusty
 
 env:
   global:
