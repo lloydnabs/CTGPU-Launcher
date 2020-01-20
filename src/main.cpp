@@ -28,7 +28,6 @@
 #include "system/CThread.h"
 #include "myutils/mocha.h"
 #include "myutils/libfat.h"
-#include "myutils/libntfs.h"
 
 #include <sys/types.h>
 #include <dirent.h>
