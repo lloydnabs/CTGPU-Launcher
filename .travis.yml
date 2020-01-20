@@ -1,8 +1,8 @@
 language: c
 
-os: linux
+os: ubuntu
 sudo: true
-dist: trusty
+dist: clang
 
 env:
   global:
