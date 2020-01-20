@@ -42,7 +42,10 @@ install:
   - (git clone https://github.com/lloydnabs/libgw32c.git || (cd libgw32c && git pull))
   - (cd dynamic_libs && ((make -j8 | grep -c "built ... ") && make install && echo "installed" ) || (echo "no need for make install" && make))
   - (cd libiosuhax && make -j8 && make install) 
-  - (cd glibc && make && make install) 
+  - (cd glibc && mkdir ../glibc-build && cd ../glibc-build && ../glibc/configure --prefix=/usr \
+    --disable-profile --enable-add-ons=linuxthreads \
+    --libexecdir=/usr/lib --with-headers=/usr/include \
+    --without-cvs && make && make install) 
   - (cd libfat && make wiiu-release && make wiiu-install)
   - (cd libntfs-wiiu && make wiiu-install)
   - (cd libutils && ((make -j8 | grep -c "built ... ") && make install && echo "installed" ) || (echo "no need for make install" && make))
