@@ -76,7 +76,7 @@ LIBS	:= -lm -lgcc -lfat -lntfs -liosuhax -lfswrapper -lutils -ldynamiclibs -lstd
 LIBDIRS	:=	$(CURDIR)	\
 			$(DEVKITPPC)/lib  \
 			$(DEVKITPPC)/lib/gcc/powerpc-eabi/$(GCC_VER)
-			$(DEVKITPPC)/powerpc-eabi
+			$(DEVKITPPC)/powerpc-eabi  \
 
 
 #---------------------------------------------------------------------------------
