@@ -13,8 +13,7 @@ $(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to>dev
 endif
 
 export PATH			:=	$(DEVKITPPC)/bin:$(PORTLIBS)/bin:$(PATH)
-export LIBPPC_INC	:=	$(DEVKITPRO)/devkitPPC/powerpc-eabi/include
-export LIBPPC_LIB	:=	$(DEVKITPRO)/devkitPPC/powerpc-eabi/lib
+export LIBPPC_LIB	:=	$(DEVKITPRO)/devkitPPC/powerpc-eabi/lib/libc.a
 export PORTLIBS		:=	$(DEVKITPRO)/portlibs/ppc
 export GCC_VER      := $(shell $(DEVKITPPC)/bin/powerpc-eabi-gcc -dumpversion)
 
@@ -182,7 +181,7 @@ $(OUTPUT).elf:  $(OFILES)
 #---------------------------------------------------------------------------------
 %.elf: link.ld $(OFILES)
 	@echo "linking ... $(TARGET).elf"
-	$(Q)$(LD) -n -T $^ $(LDFLAGS) -o ../$(BUILD_DBG).elf  $(LIBPATHS) $(LIBPPC_INC) $(LIBPPC_LIB) $(LIBS)
+	$(Q)$(LD) -n -T $^ $(LDFLAGS) -o ../$(BUILD_DBG).elf  $(LIBPATHS) $(LIBPPC_LIB) $(LIBS)
 	$(Q)$(OBJCOPY) -S -R .comment -R .gnu.attributes ../$(BUILD_DBG).elf $@
 
 ../data/loader.bin:
