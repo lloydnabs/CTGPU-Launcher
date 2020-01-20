@@ -2,7 +2,7 @@ language: c
 
 os: linux
 sudo: true
-
+dist: precise
 env:
   global:
     - DEVKITPRO=/opt/devkitpro    
