@@ -1,7 +1,7 @@
 #include <string>
 
 #include <map>
-#include <experimental/filesystem>
+#include <csystem>
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -41,7 +41,7 @@ void HandleMultiModPacks(u64 titleID/*,bool showMenu*/) {
         std::string curMountName = it->second;
         //DEBUG_FUNCTION_LINE("%s %s \n",curMount.c_str(),curMountName.c_str());
         std::string modTitleIDPath = curMount + GAME_MOD_FOLDER + "/" + TitleIDString;
-		std::experimental::filesystem::copy(modTitleIDPath + "/CTGP-U", modTitleIDPath + "/MyStuff", std::experimental::filesystem::copy_options::recursive);	
+		system(copy modTitleIDPath + "\CTGP-U\"  modTitleIDPath + "\MyStuff\")
         //DEBUG_FUNCTION_LINE("modTitleIDPath %s \n",modTitleIDPath.c_str());
         DirList modTitleDirList(modTitleIDPath.c_str(), NULL, DirList::Dirs);
 
