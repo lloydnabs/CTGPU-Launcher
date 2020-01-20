@@ -1,8 +1,7 @@
 language: c
 
-os: ubuntu
+os: linux
 sudo: true
-dist: trusty
 
 env:
   global:
