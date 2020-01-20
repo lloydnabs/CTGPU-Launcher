@@ -21,8 +21,10 @@ addons:
 
 before_install:
   - mkdir -p "${DEVKITPRO}"
-  - wget http://download.sourceforge.net/devkitpro/devkitPPC_r29-1-x86_64-linux.tar.bz2 -O devkitPPC-linux.tar.bz2
-  - wget https://download.sourceforge.net/devkitpro/devkitARM_r47-x86_64-linux.tar.bz2 -O devkitARM-linux.tar.bz2
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb -O /tmp/devkitpro-pacman.deb; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo dpkg -i /tmp/devkitpro-pacman.deb; fi
+  - yes | sudo dkp-pacman -Syu devkitPPC --needed
+  - yes | sudo dkp-pacman -Syu devkitARM --needed
   - wget https://github.com/Maschell/dynamic_libs/archive/lib.tar.gz -O dynamic_libs.tar.gz
   - wget https://github.com/Maschell/libutils/archive/master.tar.gz -O libutils.tar.gz
   - wget https://github.com/aliaspider/libfat/archive/master.tar.gz -O libfat.tar.gz
