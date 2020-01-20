@@ -41,7 +41,7 @@ void HandleMultiModPacks(u64 titleID/*,bool showMenu*/) {
         std::string curMountName = it->second;
         //DEBUG_FUNCTION_LINE("%s %s \n",curMount.c_str(),curMountName.c_str());
         std::string modTitleIDPath = curMount + GAME_MOD_FOLDER + "/" + TitleIDString;
-		std::experimental::filesystem::skip_symlinks::copy(modTitleIDPath + "/CTGP-U", modTitleIDPath + "/MyStuff", std::experimental::filesystem::skip_symlinks::copy_options::recursive);
+		std::experimental::filesystem::copy(modTitleIDPath + "/CTGP-U", modTitleIDPath + "/MyStuff", std::experimental::filesystem::copy_options::recursive::skip_symlinks);
         //DEBUG_FUNCTION_LINE("modTitleIDPath %s \n",modTitleIDPath.c_str());
         DirList modTitleDirList(modTitleIDPath.c_str(), NULL, DirList::Dirs);
 
