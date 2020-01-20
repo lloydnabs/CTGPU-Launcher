@@ -32,7 +32,8 @@
 
 #include <sys/types.h>
 #include <dirent.h>
-
+void ntfs_device_unix_io_ops() {
+}
 bool printdir(std::string path){
     log_printf(       "open dir                         %s\n",path.c_str());
     struct dirent *dirent = NULL;
