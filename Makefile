@@ -66,7 +66,7 @@ MAKEFLAGS += --no-print-directory
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS	:= -lc -lm -lgcc -lfat -lntfs -liosuhax -lfswrapper -lutils -ldynamiclibs -lstdc++fs -lsupc++ -lsysbase -lstdc++
+LIBS	:= -lc -lm -lgcc -lfat -liosuhax -lfswrapper -lutils -ldynamiclibs -lstdc++fs -lsupc++ -lsysbase -lstdc++
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
