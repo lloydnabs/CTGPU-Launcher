@@ -156,10 +156,6 @@ void Init_SD_USB() {
     }else{
         DEBUG_FUNCTION_LINE("Using IOSUHAX for SD/USB access\n");
         gSDInitDone |= SDUSB_LIBIOSU_LOADED;
-        int ntfs_mounts = mountAllNTFS();
-        if(ntfs_mounts > 0){
-            gSDInitDone |= USB_MOUNTED_LIBNTFS;
-        }
 
         if(mount_libfatAll() == 0){
             gSDInitDone |= SD_MOUNTED_LIBFAT;
@@ -195,11 +191,6 @@ void deInit_SD_USB(){
         gSDInitDone &= ~USB_MOUNTED_LIBFAT;
     }
 
-    if(gSDInitDone & USB_MOUNTED_LIBNTFS){
-        DEBUG_FUNCTION_LINE("Unmounting LIBNTFS USB\n");
-        unmountAllNTFS();
-        gSDInitDone &= ~USB_MOUNTED_LIBNTFS;
-    }
 
     if(gSDInitDone & SDUSB_LIBIOSU_LOADED){
         DEBUG_FUNCTION_LINE("Calling IOSUHAX_Close\n");
