@@ -13,6 +13,8 @@ $(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to>dev
 endif
 
 export PATH			:=	$(DEVKITPPC)/bin:$(PORTLIBS)/bin:$(PATH)
+export LIBPPC_INC	:=	$(DEVKITPRO)/devkitPPC/powerpc-eabi/include
+export LIBPPC_LIB	:=	$(DEVKITPRO)/devkitPPC/powerpc-eabi/lib
 export PORTLIBS		:=	$(DEVKITPRO)/portlibs/ppc
 export GCC_VER      := $(shell $(DEVKITPPC)/bin/powerpc-eabi-gcc -dumpversion)
 
@@ -65,7 +67,7 @@ MAKEFLAGS += --no-print-directory
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS	:= -lm -lgcc -lfat -lntfs -liosuhax -lfswrapper -lutils -ldynamiclibs -lstdc++fs -lc -lg -lgd
+LIBS	:= -lm -lgcc -lfat -lntfs -liosuhax -lfswrapper -lutils -ldynamiclibs -lstdc++fs -lc
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
@@ -74,6 +76,7 @@ LIBS	:= -lm -lgcc -lfat -lntfs -liosuhax -lfswrapper -lutils -ldynamiclibs -lstd
 LIBDIRS	:=	$(CURDIR)	\
 			$(DEVKITPPC)/lib  \
 			$(DEVKITPPC)/lib/gcc/powerpc-eabi/$(GCC_VER)
+			$(DEVKITPPC)/powerpc-eabi
 
 
 #---------------------------------------------------------------------------------
