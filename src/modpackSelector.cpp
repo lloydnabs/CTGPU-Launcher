@@ -2,6 +2,7 @@
 
 #include <map>
 #include <experimental/filesystem>
+#include <iosuhax.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
