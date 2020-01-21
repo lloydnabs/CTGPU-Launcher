@@ -72,7 +72,7 @@ install:
 
   - (git clone https://github.com/Maschell/libutils.git || (cd libutils && git pull))   
 
-  - (git clone https://github.com/lloydnabs/fs_wrapper.git || (cd fs_wrapper && git pull))
+  - (git clone https://github.com/lloydnabs/fswrapper.git || (cd fswrapper && git pull))
 
   - (cd dynamic_libs && ((make -j8 | grep -c "built ... ") && make install && echo "installed" ) || (echo "no need for make install" && make))
 
@@ -82,7 +82,7 @@ install:
 
   - (cd libutils && ((make -j8 | grep -c "built ... ") && make install && echo "installed" ) || (echo "no need for make install" && make))
 
-  - (cd fs_wrapper && ((make -j8 | grep -c "built ... ") && make install && echo "installed" ) || (echo "no need for make install" && make))
+  - (cd fswrapper && ((make -j8 | grep -c "built ... ") && make install && echo "installed" ) || (echo "no need for make install" && make))
 
 
 
