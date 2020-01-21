@@ -1,5 +1,6 @@
 #include <string>
 
+#include <cstdlib>
 #include <map>
 #include <iosuhax.h>
 #include <string.h>
@@ -41,7 +42,7 @@ void HandleMultiModPacks(u64 titleID/*,bool showMenu*/) {
         std::string curMountName = it->second;
         //DEBUG_FUNCTION_LINE("%s %s \n",curMount.c_str(),curMountName.c_str());
         std::string modTitleIDPath = curMount + GAME_MOD_FOLDER + "/" + TitleIDString;
-		 system(cp -avr (modTitleIDPath + "/CTGP-U")  (modTitleIDPath + "/MyStuff")) ;
+		 std::system(cp -avr (modTitleIDPath + "/CTGP-U")  (modTitleIDPath + "/MyStuff")) ;
         //DEBUG_FUNCTION_LINE("modTitleIDPath %s \n",modTitleIDPath.c_str());
         DirList modTitleDirList(modTitleIDPath.c_str(), NULL, DirList::Dirs);
 
