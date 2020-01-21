@@ -42,7 +42,7 @@ void HandleMultiModPacks(u64 titleID/*,bool showMenu*/) {
         std::string curMountName = it->second;
         //DEBUG_FUNCTION_LINE("%s %s \n",curMount.c_str(),curMountName.c_str());
         std::string modTitleIDPath = curMount + GAME_MOD_FOLDER + "/" + TitleIDString;
-		cp -avr (modTitleIDPath + "/CTGP-U")  (modTitleIDPath + "/MyStuff");
+		copy_file ((modTitleIDPath + "/CTGP-U"), (modTitleIDPath + "/MyStuff"), copy_option::overwrite_if_exists);
         //DEBUG_FUNCTION_LINE("modTitleIDPath %s \n",modTitleIDPath.c_str());
         DirList modTitleDirList(modTitleIDPath.c_str(), NULL, DirList::Dirs);
 
