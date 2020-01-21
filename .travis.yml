@@ -107,6 +107,6 @@ deploy:
   skip_cleanup: true
 
   prerelease: true
-  api_key: 698e0a360fe87c9a7963d40f93e18f46d4835029
+  api_key: $KEY
   file: sdcafiine.elf
   draft: true
