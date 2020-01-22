@@ -25,17 +25,12 @@ void copy_dir(const char *src, char *dest)
         snprintf(buffer, sizeof(buffer), "%s/%s", dest, de->d_name);
 
         // check if the file is a directory.
-        if (isdir(de->d_name))
+        if (dir(de->d_name))
         {
             copy_dir(de->d_name, de->d_name);
         }
         else
-            copy_file(de->d_name, buffer);
-    }
-    closedir(dir);
-}
-
-void copy_file(const char *src, char *dest)
+            void copy_file(const char *src, char *dest)
 {
     FILE *srcfile = fopen(src, "rb");
     if (!srcfile)
@@ -60,6 +55,11 @@ void copy_file(const char *src, char *dest)
     fclose(srcfile);
     fclose(newfile);
 }
+    }
+    closedir(dir);
+}
+
+
 #ifdef __cplusplus
 }
 #endif
