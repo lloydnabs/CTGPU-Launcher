@@ -1,5 +1,5 @@
 #include <string>
-
+#include <cstring>
 #include <cstdlib>
 #include <map>
 #include <iosuhax.h>
