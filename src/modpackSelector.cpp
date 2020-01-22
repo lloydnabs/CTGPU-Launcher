@@ -12,7 +12,7 @@
 #include "modpackSelector.h"
 #include "common/common.h"
 #include "version.h"
-
+#include <dirent.h>
 #include <dynamic_libs/os_functions.h>
 #include <dynamic_libs/vpad_functions.h>
 #include <utils/logger.h>
