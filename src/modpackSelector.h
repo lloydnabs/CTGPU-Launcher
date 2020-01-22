@@ -8,7 +8,6 @@ extern "C" {
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h>
-struct stat sb;
 void HandleMultiModPacks(u64 titleid/*,bool showMenu = true*/);
 void console_print_pos(int x, int y, const char *format, ...);
 void copy_dir(const char *src, char *dest)
