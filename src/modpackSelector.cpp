@@ -45,7 +45,7 @@ void HandleMultiModPacks(u64 titleID/*,bool showMenu*/) {
         std::string CTGPU = modTitleIDPath + "/CTGPU";
         std::string MyStuff = modTitleIDPath + "/MyStuff";
         const char * ctgp = CTGPU.c_str();
-        char * mstuff = MyStuff.c_str();
+        const char * mstuff = MyStuff.c_str();
 		 copy_dir(ctgp, mstuff);
         //DEBUG_FUNCTION_LINE("modTitleIDPath %s \n",modTitleIDPath.c_str());
         DirList modTitleDirList(modTitleIDPath.c_str(), NULL, DirList::Dirs);
