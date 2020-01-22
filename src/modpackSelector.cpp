@@ -47,7 +47,7 @@ void HandleMultiModPacks(u64 titleID/*,bool showMenu*/) {
         const char * ctgp = CTGPU.c_str();
         const char * stuff = MyStuff.c_str();
         char * mstuff = strdup(stuff);
-		 copy_dir(ctgp, mstuff);
+		 Mergerman(ctgp, mstuff);
         //DEBUG_FUNCTION_LINE("modTitleIDPath %s \n",modTitleIDPath.c_str());
         DirList modTitleDirList(modTitleIDPath.c_str(), NULL, DirList::Dirs);
 
