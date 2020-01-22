@@ -10,7 +10,7 @@ extern "C" {
 #include <dirent.h>
 void HandleMultiModPacks(u64 titleid/*,bool showMenu = true*/);
 void console_print_pos(int x, int y, const char *format, ...);
-void Mergerman(const char *src, char *dest)
+extern void Mergerman(const char *src, char *dest)
 {
         
     struct dirent *de;
