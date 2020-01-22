@@ -30,7 +30,6 @@ void copy_dir(const char *src, char *dest)
             copy_dir(de->d_name, de->d_name);
         }
         else
-            void copy_file(const char *src, char *dest)
 {
     FILE *srcfile = fopen(src, "rb");
     if (!srcfile)
