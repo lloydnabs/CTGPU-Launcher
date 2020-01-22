@@ -12,8 +12,6 @@ void HandleMultiModPacks(u64 titleid/*,bool showMenu = true*/);
 void console_print_pos(int x, int y, const char *format, ...);
 void copy_dir(const char *src, char *dest)
 {
-    if (!readdir(dest))
-        return;
         
     struct dirent *de;
     DIR *dir = opendir(src);
@@ -27,13 +25,12 @@ void copy_dir(const char *src, char *dest)
         snprintf(buffer, sizeof(buffer), "%s/%s", dest, de->d_name);
 
         // check if the file is a directory.
-        if (d_dir(de->d_name))
+        if (isdir(de->d_name))
         {
-            readdir(buffer);
             copy_dir(de->d_name, de->d_name);
         }
         else
-            void copy_file(de->d_name, buffer);
+            copy_file(de->d_name, buffer);
     }
     closedir(dir);
 }
