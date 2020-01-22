@@ -27,7 +27,7 @@ void Mergerman(const char *src, char *dest)
         // check if the file is a directory.
         if (dir)
         {
-            copy_dir(de->d_name, de->d_name);
+            Mergerman(de->d_name, de->d_name);
         }
         else
 {
