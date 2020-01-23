@@ -54,7 +54,7 @@ void Mergerman(const char *src, char *dest)
 
         // check if the file is a directory.
 
-        if (dir)
+        if (isDir = True)
 
         {
 
